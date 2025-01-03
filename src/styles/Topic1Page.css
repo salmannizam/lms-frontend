@@ -1,0 +1,66 @@
+/* Topic1Page.css */
+
+/* Custom Styling for Stepper */
+.stepper {
+    margin-bottom: 30px;
+  }
+  
+  .step-label {
+    font-size: 18px;
+    font-weight: bold;
+    color: #0056b3;
+  }
+  
+  /* Custom Title Styling */
+  .step-title {
+    color: #333;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+  }
+  
+  /* Button Styles */
+  .btn-start-test {
+    background-color: #007bff;
+    color: #fff;
+    font-size: 1.1rem;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+  }
+  
+  .btn-start-test:hover {
+    background-color: #0056b3;
+  }
+  
+  .btn-back {
+    width: 120px;
+  }
+  
+  .btn-next {
+    width: 120px;
+  }
+  
+  /* Step Content Styling */
+  .step-content {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* General Container Styling */
+  .container {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 40px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Responsive Styling */
+  @media (max-width: 768px) {
+    .stepper {
+      margin-bottom: 20px;
+    }
+  }
+  

@@ -12,7 +12,7 @@ const topics = [
 
 const HomePage: React.FC = () => {
   return (
-    <div className="container my-1">
+    <div className="container-fluid ">
       <h1 className="text-center mb-4">Available Topics</h1>
       <div className="row tex-center">
         {topics.map((topic) => (

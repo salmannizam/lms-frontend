@@ -18,7 +18,7 @@ const ResultsPage: React.FC = () => {
     // Fetch the results of the test using the token
     if (token) {
       axios
-        .get(`http://192.168.1.153:3000/test/results/${token}`)
+        .get(`http://192.168.1.4:3000/test/results/${token}`)
         .then((response) => {
           if (response.data.valid) {
             setResults(response.data.results);

@@ -19,7 +19,7 @@ const TestPage: React.FC = () => {
     if (token) {
       // Fetch the test details using the token
       axios
-        .get(`http://192.168.1.153:3000/test/get/${token}`)
+        .get(`http://192.168.1.4:3000/test/get/${token}`)
         .then((response) => {
           if (response.data.valid) {
             setQuestions(response.data.test.questions); // Set questions if valid response

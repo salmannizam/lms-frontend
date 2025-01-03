@@ -11,6 +11,7 @@ const TestPage: React.FC = () => {
   const [startTime, setStartTime] = useState<number>(0); // Time left in seconds
   const [totalTime, setTotalTime] = useState<number>(0); // Time left in seconds
 
+  const [time, setTime] = useState<number>(0); // Remaining time in milliseconds
   const [loading, setLoading] = useState<boolean>(true); // For loading state
   const [error, setError] = useState<string>(''); // For error handling
 
@@ -38,13 +39,33 @@ const TestPage: React.FC = () => {
     }
   }, [token]); // Run effect only when token changes
 
-  // Format the remaining time in minutes and seconds
-  const formatTime = (seconds: number) => {
-    const mins = Math.floor(seconds / 60);
-    const secs = seconds % 60;
+  // Calculate and format the remaining time
+  const formatTime = (time: number) => {
+    const mins = Math.floor(time / 60000);
+    const secs = Math.floor((time % 60000) / 1000);
     return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
   };
 
+  useEffect(() => {
+    if (startTime && totalTime) {
+      // Calculate remaining time based on startTime and totalTime
+      const interval = setInterval(() => {
+        const currentTime = Date.now();
+        const elapsedTime = currentTime - startTime; // Time passed since test started
+        const remainingTime = totalTime - elapsedTime; // Remaining time
+
+        if (remainingTime <= 0) {
+          clearInterval(interval); // Stop the timer when time expires
+          setTime(0); // Ensure time is 0 if expired
+        } else {
+          setTime(remainingTime);
+        }
+      }, 1000);
+
+      // Cleanup interval on unmount or if time expires
+      return () => clearInterval(interval);
+    }
+  }, [startTime, totalTime]);
 
 
   const handleAnswerSubmit = (questionId: number, answer: any) => {
@@ -73,7 +94,8 @@ const TestPage: React.FC = () => {
     <div className="test-page">
       <h1>Test</h1>
       <div>
-        <p>Time left: {}</p>
+        <p>Time left: {formatTime(time)}</p>
+        {time <= 0 && <p>Time's up!</p>}
       </div>
       {questions.length === 0 && <p>No questions available</p>} {/* Check for empty questions */}
 

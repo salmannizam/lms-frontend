@@ -84,11 +84,9 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ question, onAnswerSubmit }) =
     // Submit the answer
     onAnswerSubmit(matchedAnswers);
 
-    const isCorrect = question.correctAnswers.every(
-      (answer) => matches[answer.functionId] === answer.toolId
-    );
+    // show error as per api res
+    
 
-    setFeedback(isCorrect ? "Well done! You matched all tools to their correct functions." : "Some matches are incorrect. Please try again.");
   };
 
   // If question data is not yet available, show loading
